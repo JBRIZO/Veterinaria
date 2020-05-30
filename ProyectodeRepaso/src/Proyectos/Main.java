@@ -4,6 +4,7 @@ import org.w3c.dom.ls.LSOutput;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 import java.lang.Math;
+import java.util.*;
 
 public class Main {
 
@@ -23,6 +24,9 @@ public class Main {
                 int opcion = sc.nextInt();
                 switch (opcion) {
                     case 1:
+                        boolean salir2 = false;
+                        while (!salir2)
+                        {
                         System.out.println("           Menu de citas");
                         System.out.println("****************************************");
                         System.out.println("1. Agendar Cita");
@@ -30,40 +34,88 @@ public class Main {
                         System.out.println("3. Cancelar cita");
                         System.out.println("4. Menú principal");
                         System.out.println("****************************************");
-                        int opcion1 = sc.nextInt();
-                        switch (opcion1) {
-                            case 1:
-                                break;
-                            case 2:
-                                break;
-                            case 3:
-                                break;
-                            case 4:
-                                break;
-                            default:
-                                System.out.println("Ingrese un numero valido");
-                                break;
-
-
+                        try {
+                            int opcion1 = sc.nextInt();
+                            switch (opcion1) {
+                                case 1:
+                                    break;
+                                case 2:
+                                    break;
+                                case 3:
+                                    break;
+                                case 4:
+                                    salir2 = true;
+                                    break;
+                                default:
+                                    System.out.println("Ingrese un numero valido");
+                            }
+                        } catch (InputMismatchException e) {
+                            System.out.println("Ingrese un numero valido");
+                            sc.next();
                         }
+                }
                         break;
                     case 2:
-                        System.out.println("           Menu de diagnosticos");
-                        System.out.println("****************************************");
-                        System.out.println("1. Registrar diagnostico");
-                        System.out.println("2. Modificar diagnostico");
-                        System.out.println("3. Eliminar diagnostico");
-                        System.out.println("4. Menú principal");
-                        System.out.println("****************************************");
-                        int opcion2 = sc.nextInt();
+                        boolean salir3 = false;
+                        while (!salir3)
+                        {
+                            System.out.println("           Menu de diagnosticos");
+                            System.out.println("****************************************");
+                            System.out.println("1. Registrar diagnostico");
+                            System.out.println("2. Modificar diagnostico");
+                            System.out.println("3. Eliminar diagnostico");
+                            System.out.println("4. Menú principal");
+                            System.out.println("****************************************");
+                            try {
+                                int opcion2 = sc.nextInt();
+                                switch (opcion2) {
+                                    case 1:
+                                        break;
+                                    case 2:
+                                        break;
+                                    case 3:
+                                        break;
+                                    case 4:
+                                        salir3 = true;
+                                        break;
+                                    default:
+                                        System.out.println("Ingrese un numero valido");
+                                        break;
+                                }
+                            } catch (InputMismatchException e) {
+                                System.out.println("Ingrese un numero valido");
+                                sc.next();
+                            }
+                        }
                         break;
                     case 3:
-                        System.out.println("           Menu de reportes");
-                        System.out.println("****************************************");
-                        System.out.println("1. Reporte de citas");
-                        System.out.println("2. Reporte de diagnosticos");
-                        System.out.println("3. Menu principal");
-                        System.out.println("****************************************");
+                        boolean salir4 = false;
+                        while (!salir4) {
+                            System.out.println("           Menu de reportes");
+                            System.out.println("****************************************");
+                            System.out.println("1. Reporte de citas");
+                            System.out.println("2. Reporte de diagnosticos");
+                            System.out.println("3. Menu principal");
+                            System.out.println("****************************************");
+                            try {
+                                int opcion3 = sc.nextInt();
+                                switch (opcion3) {
+                                    case 1:
+                                        break;
+                                    case 2:
+                                        break;
+                                    case 3:
+                                        salir4 = true;
+                                        break;
+                                    default:
+                                        System.out.println("Ingrese un numero valido");
+                                        break;
+                                }
+                            } catch (InputMismatchException e) {
+                                System.out.println("Ingrese un numero valido");
+                                sc.next();
+                            }
+                        }
                         break;
                     case 4:
                         salir = true;
