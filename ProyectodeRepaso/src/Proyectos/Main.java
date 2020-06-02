@@ -22,23 +22,35 @@ public class Main {
     private static String positivo = "S";
     private static String negativo = "N";
 //metodos
-    public static void pedirFecha(){
+
+    public static Date pedirFecha(){
         System.out.println("Introduzca la fecha con formato dd/mm/aaaa");
-        String fecha = sc.nextLine();
+        Scanner lt = new Scanner(System.in);
+        String ingresarFecha = lt.nextLine();
         SimpleDateFormat fechafinal = new SimpleDateFormat("dd/MM/yyyy");
-        Date probarFecha = null;
-        String date = fecha;
+        Date fecha = null;
+        String date = ingresarFecha;
         try{
-            probarFecha = fechafinal.parse(date);
+            fecha = fechafinal.parse(date);
         } catch (Exception e){ System.out.println("Formato invalido");
-            if (!fechafinal.format(probarFecha).equals(date)){
+            if (!fechafinal.format(fecha).equals(date)){
                 System.out.println("Fecha invalida");
             } else {
                 System.out.println("Fecha valida");
             }
         }
-        fechas[cont] = probarFecha;
+        return fecha;
 
+    }
+
+    public static String diagnostico(){
+        Scanner sc = new Scanner(System.in);
+        sc.useDelimiter("\n");
+
+        System.out.println("Ingrese el diagnostico");
+        String cadena = sc.nextLine();
+
+        return cadena;
     }
 
 // menu de citas
@@ -50,13 +62,13 @@ public class Main {
 
         }else {
             estado[cont] = "Activa";
-            pedirFecha();
+            fechas[cont] = pedirFecha();
             System.out.println("Ingrese el nombre del cliente");
             nombre[cont] = sc.next();
             System.out.println("Ingrese el nombre de la mascota del cliente");
             nombreMascota[cont] = sc.next();
         }
-        //System.out.println("Cita agendada para " + fechas[cont]);
+        System.out.println("Cita agendada para " + fechas[cont]);
         System.out.println("Su numero de cita es: " + cont);
         return;
     }
@@ -104,39 +116,38 @@ public class Main {
             nombreDiagnostico[cont2] = sc.next();
             System.out.println("Ingrese el nombre de la mascota del cliente");
             nombreMascotaDagnostico[cont2] = sc.next();
-            System.out.println("Ingrese el diagnostico:");
-            diagnostico[cont2] = sc.nextLine();
+            diagnostico[cont2] = diagnostico();
         System.out.println("Este es el diagnostico numero: " + cont2);
     }
 
-    public static void modificarDiagnostico()
-    {
+    public static void modificarDiagnostico() {
         System.out.println("Ingrese el numero del diagnostico que desea modificar");
         int numDiag = sc.nextInt();
         System.out.println("El numero de diagnostico corresponde a :");
         System.out.println("Cliente: " + nombreDiagnostico[numDiag]);
-        System.out.println("Mascota: "+ nombreMascotaDagnostico[numDiag]);
+        System.out.println("Mascota: " + nombreMascotaDagnostico[numDiag]);
         System.out.println("Con el siguiente diagnostico: " + diagnostico[numDiag]);
-        System.out.println("¿Desea cambiar este diagnostico?(SI/NO)");
+        System.out.println("¿Desea cambiar este diagnostico?(S/N)");
         int x = 0;
-        while(x == 0){
+        while (x == 0) {
             String confirmacion = sc.next();
-            if (confirmacion.equals(positivo)){
+            if (confirmacion.equals(positivo)) {
                 System.out.println("Porfavor inserte el nuevo diagnostico");
-                String nuevoDiagnostico = sc.nextLine();
-                diagnostico[numDiag] = nuevoDiagnostico;
+                diagnostico[numDiag] = diagnostico();
+                System.out.println("El diagnostico ha sido modificado");
                 x = 1;
-            }if(confirmacion.equals(negativo)){
-                System.out.println("El diagnóstico no sera cambiado");
-                x = 1;
-            }else{
-                System.out.println("Ingrese un valor valido");
-                x=0;
+            } else {
+                if (confirmacion.equals(negativo)) {
+                    System.out.println("El diagnóstico no sera cambiado");
+                    x = 1;
+                } else {
+                    System.out.println("Ingrese un valor valido");
+                    x = 0;
+                }
             }
+
+
         }
-
-
-
     }
 
     public static void eliminarDiagnostico()
@@ -169,6 +180,7 @@ public class Main {
         {
             System.out.println("____________________________________________");
             System.out.println("Cita numero " + i);
+            System.out.println("Fecha: "+ fechas[i]);
             System.out.println("Nombre del cliente: " + nombre[i]);
             System.out.println("Nombre de la mascota: "+ nombreMascota[i]);
             System.out.println("Estado de la cita: "+ estado[i]);
